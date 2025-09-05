@@ -15,8 +15,10 @@ pipeline {
         // Add more stages for building, testing, or deploying as needed
         stage('Build') {
             steps {
-                sh 'cp index.html /var/www/html/index.html', // Example build step (copy File)
-                    'sudo service nginx reload'
+                sh '''
+                cp index.html /var/www/html/index.html // Example build step (copy File)
+                sudo service nginx reload
+                '''
             }
         }
     }
