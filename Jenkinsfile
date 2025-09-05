@@ -3,7 +3,6 @@ agent any
 stages {
 stage('Checkout') {
 steps {
-git branch: 'main',
 git 'https://github.com/sachdath5/demo-html.git'
 }
 }
