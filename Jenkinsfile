@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                cp index.html /var/www/html/index.html // Example build step (copy File)
+                sudo cp index.html /var/www/html/index.html // Example build step (copy File)
                 sudo service nginx reload
                 '''
             }
