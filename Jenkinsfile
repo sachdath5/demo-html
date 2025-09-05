@@ -14,16 +14,5 @@ sudo systemctl restart apache2
 '''
 }
 }
-  post {
-        always {
-            echo 'Pipeline finished.'
-        }
-        success {
-            echo 'Pipeline completed successfully.'
-        }
-        failure {
-            echo 'Pipeline failed.'
-        }
-}
 }
 }  
