@@ -10,7 +10,7 @@ stage('Deploy') {
 steps {
 sh '''
 sudo cp index.html /var/www/html/index.html
-sudo systemctl restart nginx
+sudo systemctl restart apache2
 '''
 }
 }
