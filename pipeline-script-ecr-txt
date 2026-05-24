@@ -1,0 +1,36 @@
+pipeline{
+    agent any
+    environment {
+        image = 'app:latest'
+        ecr = "214277677029.dkr.ecr.ap-south-1.amazonaws.com/demo"
+    }
+    
+    stages {
+        stage ('clone'){
+            steps {
+                echo 'clone the code'
+                git branch: 'autotest',url:'https://github.com/sachdath5/demo-html.git'
+        }
+    }
+    stage('docker check'){
+        steps {
+            echo 'Hello World'
+            sh '''
+            docker build -t ${image} .
+            docker images
+            docker run -d -p 80:80 ${image}
+            '''
+        }
+    }
+       stage('docker push'){
+        steps {
+            echo 'Hello World'
+            sh '''
+            aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 214277677029.dkr.ecr.ap-south-1.amazonaws.com
+            docker tag ${image} ${ecr}:v1
+            docker push ${ecr}:v1 '''
+        }
+
+        }
+    }
+}
